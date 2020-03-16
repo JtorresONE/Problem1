@@ -1,0 +1,41 @@
+---
+title: "T-Test Problem"
+author: "Jose Torres Vargas"
+date: "Spring, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(tigerstats)
+Ourdata <- read.csv(file="GSScsv.csv")
+```
+
+
+## Is there a difference in  average years of education (EDUC) between the those who did or did not vote in 2012 (VOTE12)?
+
+$H_O$ There is no difference in average years of education between the ones that voted or not in 2012.
+
+$H_A$ There is a difference in average years of education between the ones that voted or not in 2012.
+
+Graphical Summary
+```{r}
+plot(EDUC~VOTE12,data=Ourdata)
+```
+Illustration of average educations vs people who voted or not.
+Those with higher education voted more.
+
+Numerical Summary
+```{r}
+favstats(EDUC~VOTE12,data=Ourdata)
+```
+Inference
+
+```{r}
+t.test(EDUC~VOTE12,data=Ourdata)
+```
+
+## CONCLUSION
+
+P<.05, we reject the null hypothesis. There is a difference with those that average higher education with voting in 2012.
